@@ -1,7 +1,7 @@
 FROM python:3.11
 LABEL maintainer = 'Samiiz'
 
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONUNBUFFERPED 1
 
 # mv랑 비슷함
 COPY ./requirements.txt /tmp/requirements.txt
