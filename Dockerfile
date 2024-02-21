@@ -16,7 +16,7 @@ ARG DEV=false
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     /py/bin/pip install -r /tmp/requirements.txt && \
-    if [ $DEV="ture"] ; \
+    if [ $DEV="true" ]; \
         then echo "===THIS IS DEVELOPMENT BUILD===" && \
         /py/bin/pip install -r /tmp/requirements.dev.txt ; \
     fi && \
