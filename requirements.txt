@@ -2,3 +2,5 @@
 django>=5.0.1,<6.0.0
 # 2. django rest framework version >=3.14.0,<4.0.0
 djangorestframework>=3.14.0,<4.0.0
+# 3. psycopg2( postgresql adapter) version >=2.9.9,<3.0.0
+psycopg2>=2.9.9,<3.0.0
