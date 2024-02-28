@@ -45,6 +45,7 @@ CUSTOM_APPS = [
     'drf_spectacular',
     'users.apps.UsersConfig',
     'videos.apps.VideosConfig',
+    'reactions.apps.ReactionsConfig',
     'subscriptions.apps.SubscriptionsConfig',
     'comments.apps.CommentsConfig',
     'notifications.apps.NotificationsConfig',
