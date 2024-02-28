@@ -7,14 +7,14 @@
 <summary>(1) 모델 구조</summary>
 
 
-1. User (Custom)
+1. Users (Custom)
 
 - email
 - password
 - nickname
 - is_business(boolean): personal, business
 
-2. Video
+2. Videos
 
 - title
 - link
@@ -32,7 +32,7 @@
 - Video:FK
   Video:Like/Dislike (1:N)
 
-4. Comment
+4. Comments
 
 - User:FK
 - Video:FK
@@ -40,12 +40,12 @@
 - dislike
 - content
 
-5. Subcription (채널 구독)
+5. Subcriptions (채널 구독)
 
 - User:FK => subscriber (구독한) -> 내가 구독한 사람
 - User:FK => subscribed_to (구독을 당한) -> 나를 구독한 사람
 
-6. Notification
+6. Notifications
 
 - User:FK
 - message
