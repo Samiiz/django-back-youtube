@@ -44,6 +44,10 @@ CUSTOM_APPS = [
     'rest_framework',
     'drf_spectacular',
     'users.apps.UsersConfig',
+    'videos.apps.VideosConfig',
+    'subscriptions.apps.SubscriptionsConfig',
+    'comments.apps.CommentsConfig',
+    'notifications.apps.NotificationsConfig',
 ]
 
 INSTALLED_APPS = ALREADY_INSTALLED_APPS + CUSTOM_APPS
