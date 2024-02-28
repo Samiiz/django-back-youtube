@@ -5,7 +5,7 @@ from videos.models import Video
 
 class Reaction(CommonModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    video = models.ForeignKey(Video, on_delete=models.CASCADE)
+    reaction_video = models.ForeignKey(Video, on_delete=models.CASCADE)
 
     LIKE = 1
     DISLIKE = -1
@@ -17,7 +17,7 @@ class Reaction(CommonModel):
         (NO_REACTION, 'No Reaction'),
     )
 
-    reaction = models.IntegerField(
+    reactions = models.IntegerField(
         choices=REACTION_CHOICES,
         default=NO_REACTION
     )

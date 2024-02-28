@@ -8,4 +8,4 @@ class Notification(CommonModel):
     is_read = models.BooleanField(default=False)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    video = models.ForeignKey(Video, on_delete=models.SET_NULL)
+    notification_video = models.ForeignKey(Video, on_delete=models.SET_NULL, null=True)

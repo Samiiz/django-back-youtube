@@ -48,6 +48,7 @@ CUSTOM_APPS = [
     'reactions.apps.ReactionsConfig',
     'subscriptions.apps.SubscriptionsConfig',
     'comments.apps.CommentsConfig',
+    'common.apps.CommonConfig',
     'notifications.apps.NotificationsConfig',
 ]
 
