@@ -2,8 +2,11 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
+from rest_framework import status
 from .models import Video
 from .serializers import VideoSerializer
+
+
 
 # 전체 비디오정보를 불어오는 api
 class Videolist(APIView):
@@ -14,8 +17,18 @@ class Videolist(APIView):
 
         return Response(serializer.data)
 
-    def post():
-        pass
+    def post(self, request):
+        try:
+            user_data = request.data
+            serilaizer = VideoSerializer(data=user_data)
+
+            if serilaizer.is_valid():
+                serilaizer.save(user=request.user)
+                return Response(serilaizer.data, status=status.HTTP_201_CREATED)
+            return Response(serilaizer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        except Exception as e:
+            return Response({'msg':str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 # 특정 비디오에 대한 상세정보를 불러오는 api
 class VideoDetail(APIView):
@@ -35,7 +48,20 @@ class VideoDetail(APIView):
         return Response(serializer.data)
     def post():
         pass
-    def put():
-        pass
-    def delete():
-        pass
+    def put(self, request, pk):
+        video = self.get_object(pk)
+
+        try:
+            serializer = VideoSerializer(video, data=request.data)
+
+            serializer.is_valid()
+            serializer.save()
+            return Response(serializer.data)
+
+        except Exception as e:
+            return Response({'msg':str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+    def delete(self, request, pk):
+        video = self.get_object(pk)
+        video.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
