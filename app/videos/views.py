@@ -5,6 +5,8 @@ from rest_framework.exceptions import NotFound
 from rest_framework import status
 from .models import Video
 from .serializers import VideoSerializer
+from .managers import ReactionCustomManager
+import pdb
 
 
 
@@ -45,7 +47,13 @@ class VideoDetail(APIView):
 
         serializer = VideoSerializer(video)
 
-        return Response(serializer.data)
+        data = {
+            'video': serializer.data,
+            'likes' : ReactionCustomManager.GetLikes(pk),
+            'dislikes' : ReactionCustomManager.GetDISLikes(pk)
+        }
+
+        return Response(data)
     def post():
         pass
     def put(self, request, pk):

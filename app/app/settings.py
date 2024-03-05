@@ -40,6 +40,7 @@ ALREADY_INSTALLED_APPS = [
 ]
 
 CUSTOM_APPS = [
+    'channels',
     'core',
     'rest_framework',
     'drf_spectacular',
@@ -50,6 +51,7 @@ CUSTOM_APPS = [
     'comments.apps.CommentsConfig',
     'common.apps.CommonConfig',
     'notifications.apps.NotificationsConfig',
+    'chat.apps.ChatConfig',
 ]
 
 INSTALLED_APPS = ALREADY_INSTALLED_APPS + CUSTOM_APPS
@@ -82,7 +84,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'app.wsgi.application'
+WSGI_APPLICATION = 'app.wsgi.application' # REST API (동기)
+ASGI_APPLICATION = 'app.route.application' # Socket, Polling (비동기)
 
 
 # Database
