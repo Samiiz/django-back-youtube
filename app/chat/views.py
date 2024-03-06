@@ -5,6 +5,9 @@ from rest_framework.response import Response
 from .models import ChatRoom, ChatMessage, ChatRoomMember
 from .serializers import ChatRoomSerializer, ChatMessageSerializer, ChatroomDetailSerializer
 
+def show_html(request):
+    return render(request, 'index.html')
+
 # Create your views here.
 class ChatRoomList(APIView):
     def get(self, request):

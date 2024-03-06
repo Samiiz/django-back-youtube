@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-u)jpyj&(w7xjlnu(f@2h(@h)(m)smxz#_ldp#trap^=+u9iyh2'
+SECRET_KEY = 'test' # 'django-insecure-u)jpyj&(w7xjlnu(f@2h(@h)(m)smxz#_ldp#trap^=+u9iyh2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -52,9 +52,10 @@ CUSTOM_APPS = [
     'common.apps.CommonConfig',
     'notifications.apps.NotificationsConfig',
     'chat.apps.ChatConfig',
+    'daphne',
 ]
 
-INSTALLED_APPS = ALREADY_INSTALLED_APPS + CUSTOM_APPS
+INSTALLED_APPS = CUSTOM_APPS + ALREADY_INSTALLED_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -148,4 +149,10 @@ AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
 }

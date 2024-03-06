@@ -1,0 +1,39 @@
+version: '3.11'
+services:
+  # First Container : Django
+  app:
+    build:
+      context: .
+    volumes:
+      - static_data:/vol/web
+    environment:
+      - DB_HOST=db
+      - DB_NAME={DB_NAME}
+      - DB_USER={DB_USER}
+      - DB_PASS={DB_PASS}
+      - SECREET_KEY={SECREET_KEY}
+      - ALLOWED_HOSTS={DJANGO_ALLOWED_HOST}
+    depends_on:
+      - db
+
+  # Second Container : PostgreSQL
+  db:
+    image: postgres:16
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB={DB_NAME}
+      - POSTGRES_USER=s{DB_USER}
+      - POSTGRES_PASSWORD={DB_PASS}
+  
+  proxy:
+    build:
+      context: ./proxy
+    restart: always
+    port:
+      # - 80:8000
+      - 8000:8000
+    depends_on:
+      - app
+    volumes:
+      -static_data:/vol/static

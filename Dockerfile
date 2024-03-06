@@ -1,5 +1,5 @@
 FROM python:3.11
-LABEL maintainer = 'Samiiz'
+LABEL maintainer='Samiiz'
 
 ENV PYTHONUNBUFFERED 1
 
@@ -17,8 +17,8 @@ RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     /py/bin/pip install -r /tmp/requirements.txt && \
     apt-get update && \
-    apt-get install -y postgresql-client build-essential libpq-dev && \
-    if [ $DEV="true" ]; \
+    apt-get install -y postgresql-client build-essential libpq-dev zlib1g zlib1g-dev && \
+    if [ "$DEV" = "true" ]; \
         then echo "===THIS IS DEVELOPMENT BUILD===" && \
         /py/bin/pip install -r /tmp/requirements.dev.txt ; \
     fi && \
@@ -28,8 +28,14 @@ RUN python -m venv /py && \
     adduser \
         --disabled-password \
         --no-create-home \
-        django-user
+        django-user && \
+    mkdir -p /vol/web && \
+    chown -R django-user:django-user /vol/ && \
+    chmod -R 755 /vol/web && \
+    chmod -R +x /scripts 
 
-ENV PATH="/py/bin/:$PATH"
+ENV PATH="/scripts:/py/bin/:$PATH"
 
 USER django-user
+
+CMD ["run.sh"]
